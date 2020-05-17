@@ -73,10 +73,15 @@ function! dirgutter#place_signs()
     while l:linenr < line('$')
         let l:linenr += 1
         let l:line = fnamemodify(getline(l:linenr), ':.')
-        if get(l:files, l:line) !=# '0'
-            call sign_place(l:signid, 'dirgutter', s:sign_names[l:files[l:line]], '%', {'lnum': l:linenr})
-            let l:signid += 1
-        elseif empty(systemlist('ls -A ' . l:line))
+        let l:found = 0
+        for l:file in keys(l:files)
+            if matchstr(l:file, l:line) !=# ''
+                call sign_place(l:signid, 'dirgutter', s:sign_names[l:files[l:file]], '%', {'lnum': l:linenr})
+                let l:signid += 1
+                let l:found = 1
+            endif
+        endfor
+        if l:found == 0 && empty(systemlist('ls -A ' . l:line))
             " empty directories are also ignored by git
             call sign_place(l:signid, 'dirgutter', 'DirGutterIgnored', '%', {'lnum': l:linenr})
             let l:signid += 1
