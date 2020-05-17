@@ -1,0 +1,42 @@
+*dirgutter.txt*  Gitgutter symbols for dirvish buffers.
+
+Author:  Max Rossmannek
+License: MIT
+
+==============================================================================
+INTRODUCTION                                     *dirgutter*
+
+Dirgutter aims at providing |signs| for |dirvish| buffers just like |gitgutter|
+does for file buffers.
+
+==============================================================================
+USAGE                                            *dirgutter-usage*
+
+Dirgutter provides a single command: |:Dirgutter|
+When executed, it parses a buffer showing the contents of a directory (like
+one populated by |dirvish|) and populates the |sign-column| with the results
+of the short git status command.
+
+Dirgutter also sets up an |autocommand| on |BufEnter| to run this command.
+
+------------------------------------------------------------------------------
+COMMANDS                                         *dirgutter-commands*
+
+*:Dirgutter*
+Command to populate the |sign-column| of a buffer containing the contents of a
+directory with the results of the short git status command.
+
+==============================================================================
+CONFIGURATION                                    *dirgutter-configuration*
+
+Since dirgutter is an early alpha, no configuration is possible at this time.
+
+------------------------------------------------------------------------------
+MAPPINGS                                         *dirgutter-mappings*
+
+*<Plug>(dirgutter)*
+If you would like to map the |:Dirgutter| command you can map to this |<Plug>|
+mapping.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
